@@ -1,0 +1,20 @@
+{
+  "name": "solawi",
+  "repository": "",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./js/index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/main.css -o ./css/site.css",
+    "watch": "tailwindcss -i ./src/main.css -o ./css/site.css --watch",
+    "prod": "tailwindcss -i ./src/main.css -o ./css/site.css --minify"
+  },
+  "dependencies": {
+    "daisyui": "^2.13.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23"
+  }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/svg+xml" href="{{ url('theme://images/solawi.svg')|e }}" />
+    <link rel="canonical" href="{{ page.canonical(true)|e }}" />
+{% endblock head %}
+
+{% block stylesheets %}
+	{% do assets.addCss('theme://css/site.css', 100) %}
+    {% do assets.addCss('theme://css/custom.css', 99) %}
+{% endblock %}
+
+{% block javascript %}
+	{% do assets.addJs('theme://js/theme.js', 100) %}
+{% endblock %}
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+</head>
+<body id="top" class="{{ page.header.body_classes|e }}">
+
+<div id="app">
+      <div class="shadow bg-base-200 drawer">
+        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+        <div class="flex flex-col drawer-content">
+          <!-- Navigation Beg -->
+          <nav class="w-full navbar p-0 bg-base-300">
+            <div class="navbar-start">
+              <a class="logo px-2">
+                <image src="{{ url('theme://images/solawi.svg')|e }}" class="block w-12 h-12" />
+              </a>
+              <!--
+
+                <div>
+                  <image src="./images/wahlbacherhof.svg" class="block h-10" />
+                </div>
+              -->
+
+              <div>
+                <div class="text-xl text-center">Wahlbacherhof</div>
+                <div class="text-xs italic text-center">Solidarische Landwirtschaft</div>
+              </div>
+            </div>
+
+            <div class="navbar-center hidden lg:flex h-full">
+              <!-- {% include 'partials/navigation.html.twig' %} -->
+              <div class="flex items-stretch">
+                <a class="btn btn-ghost"> Button </a>
+                <div class="dropdown">
+                  <div tabindex="0" class="btn btn-ghost">Dropdown</div>
+                  <ul
+                    tabindex="0"
+                    class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
+                  >
+                    {% block header_navigation %}
+                      {% include 'partials/navigation.html.twig' %}
+                    {% endblock %}
+                  <!--
+                    <li>
+                      <a>Item 1</a>
+                    </li>
+                    <li>
+                      <a>Item 2</a>
+                      <ul>
+                        <li>
+                          <a>Item 1</a>
+                        </li>
+                        <li>
+                          <a>Item 2</a>
+                        </li>
+                        <li>
+                          <a>Item 3</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a>Item 3</a>
+                    </li>
+                    -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="navbar-end">
+
+              <button
+                id="toggleModeBtn"
+                onclick="themeModeToggle(this)"
+                aria-label="Color Mode"
+              >
+                <image
+                id="colorModeImg"
+                src="{{ url('theme://images/color.svg')|e }}"
+                class="block w-8 h-8"
+                aria-hidden="true"
+              />
+              </button>
+              
+              <div class="lg:hidden">
+                <label for="my-drawer-3" class="btn btn-square btn-ghost">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    class="inline-block w-6 h-6 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </label>
+              </div>
+            </div>
+          </nav>
+          <!-- Navigation End -->
+
+          <!-- Content Beg -->
+          <section class="content">{% block content %}{% endblock %}</section>
+          <!-- Content End -->
+
+          {% block footer %}
+          <footer class="footer text-center">
+            <div class="">
+              <p>
+                <a href="http://getgrav.org">Grav</a>, by
+                <a href="http://www.rockettheme.com">RocketTheme</a>.
+              </p>
+            </div>
+          </footer>
+          {% endblock %}
+        </div>
+
+        <!-- Navigation Side Beg -->
+        <div class="drawer-side">
+          <label for="my-drawer-3" class="drawer-overlay"></label>
+          <ul class="p-4 overflow-y-auto menu w-80 bg-base-100">
+
+          {% block sidebar_navigation %}
+              {% include 'partials/navigation.html.twig' %}
+          {% endblock %}
+          -->
+          <!--
+            <li>
+              <a>Button</a>
+            </li>
+            <li>
+              <a>Dropdown</a>
+              <ul>
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                  <ul>
+                    <li>
+                      <a>Item 1</a>
+                    </li>
+                    <li>
+                      <a>Item 2</a>
+                    </li>
+                    <li>
+                      <a>Item 3</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>Item 3</a>
+                </li>
+              </ul>
+            </li>
+            -->
+          </ul>
+        </div>
+        <!-- Navigation Side End -->
+      </div>
+    </div>
+
+    {% block bottom %} {{ assets.js('bottom')|raw }} {% endblock %}
+</body>
+</html>
