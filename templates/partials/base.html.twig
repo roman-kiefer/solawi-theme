@@ -34,7 +34,7 @@
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="flex flex-col drawer-content">
           <!-- Navigation Beg -->
-          <nav class="w-full navbar p-0 bg-base-300">
+          <nav class="w-full navbar p-0 bg-base-300 absolute top-0 h-16">
             <div class="navbar-start">
               <a class="logo px-2">
                 <image src="{{ url('theme://images/solawi.svg')|e }}" class="block w-12 h-12" />
@@ -129,15 +129,17 @@
           <!-- Navigation End -->
 
           <!-- Content Beg -->
-          <section class="content">{% block content %}{% endblock %}</section>
+          <section class="content mt-16">
+          {% block content %}
+          {% endblock %}
+          </section>
           <!-- Content End -->
 
           {% block footer %}
-          <footer class="footer text-center">
+          <footer class="footer text-center bottom-0 absolute bg-base-300 h-5">
             <div class="">
               <p>
-                <a href="http://getgrav.org">Grav</a>, by
-                <a href="http://www.rockettheme.com">RocketTheme</a>.
+              Footer
               </p>
             </div>
           </footer>
