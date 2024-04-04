@@ -1,0 +1,11 @@
+<div class="card card-side bg-secondary shadow-xl rounded-none m-4">
+  {% set image = page.media.images|first %}
+  {% if image %}
+    <figure>
+        {{ image.html('','','h-full w-48 md:w-64 lg:96')|raw }}
+    </figure>
+  {% endif %}
+  <div class="card-body min-h-16">
+    {{ content|raw }}
+  </div>
+</div>
