@@ -7,7 +7,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography"),require('daisyui')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
     themes: [
       {
@@ -21,9 +21,9 @@ module.exports = {
           accent: '#DAAE08',
           'accent-focus': '#B18B00',
           'accent-content': '#ffffff',
-          neutral: '#3d4451',
+          neutral: '#82B440',
           'neutral-focus': '#2a2e37',
-          'neutral-content': '#ffffff',
+          'neutral-content': '#1f2937',
           'base-100': '#ffffff',
           'base-200': '#f9fafb',
           'base-300': '#d1d5db',
@@ -45,7 +45,7 @@ module.exports = {
           accent: '#DAAE08',
           'accent-focus': '#B18B00',
           'accent-content': '#ffffff',
-          neutral: '#3d4451',
+          neutral: '#338F55',
           'neutral-focus': '#2a2e37',
           'neutral-content': '#ffffff',
           'base-100': '#3D4451',

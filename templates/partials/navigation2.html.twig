@@ -1,10 +1,10 @@
 {% macro loop(page, child) %}
     {% for p in page.children.visible %}
-        {% set current_page = (p.active or p.activeChild) ? 'selected' : '' %}
+        {% set current_page = (p.active or p.activeChild) ? 'active' : '' %}
         {% if p.children.visible.count > 0 %}
             {% if child == true %}
             <li class="has-children child {{ current_page|e }}">
-                <a href="{{ p.url|e }}">
+                <a href="{{ p.url|e }}" class="{{ current_page|e }}">
                     {% if p.header.icon %}<i class="fa fa-{{ p.header.icon|e }}"></i>{% endif %}
                     {{ p.menu|e }}
                 </a>
@@ -32,7 +32,7 @@
             {% else %}
             <li class="{{ current_page|e }}">
             {% endif %}
-                <a href="{{ p.url|e }}">
+                <a href="{{ p.url|e }}" class="{{ current_page|e }}">
                     {% if p.header.icon %}<i class="fa fa-{{ p.header.icon|e }}"></i>{% endif %}
                     {{ p.menu|e }}
                 </a>
@@ -46,9 +46,9 @@
         {{ _self.loop(pages, false) }}
     {% else %}
         {% for page in pages.children.visible %}
-            {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
+            {% set current_page = (page.active or page.activeChild) ? 'active' : '' %}
             <li class="{{ current_page|e }}">
-                <a href="{{ page.url|e }}">
+                <a href="{{ page.url|e }}"  class="{{ current_page|e }}">
                     {% if page.header.icon %}<i class="fa fa-{{ page.header.icon|e }}"></i>{% endif %}
                     {{ page.menu|e }}
                 </a>
