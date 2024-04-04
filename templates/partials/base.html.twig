@@ -107,18 +107,18 @@
         </div>
 
         <!-- Navigation Side Beg -->
-        <div class="drawer-side">
+        <div class="drawer-side top-16 lg:top-0">
           
-          <div class="hidden lg:block p-2 bg-base-300">
+          <div class="block p-2 bg-base-300">
             {% block logo_sidebar %}
             {% include 'partials/logo.html.twig' %}
             {% endblock %}
           </div>
-<!--
+          <!-- Label must be here, don't delete -->
           <label for="my-drawer-3" class="drawer-overlay">
           </label>
--->
-          <ul class="navigation p-4 overflow-y-auto menu w-80 bg-base-100 h-[calc(100%-4rem)]">
+
+          <ul class="navigation p-4 overflow-y-auto menu w-80 bg-base-100 lg:h-[calc(100%-4rem)]">
 
           {% block sidebar_navigation %}
               {% include 'partials/navigation2.html.twig' %}
