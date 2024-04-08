@@ -32,7 +32,7 @@
 <div id="app" class="h-full">
       <div class="min-h-full shadow bg-base-200 drawer lg:drawer-open">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-        <div class="flex flex-col drawer-content justify-between">
+        <div class="flex flex-col drawer-content">
 
           <!-- Navigation Beg -->
           <!--
@@ -90,7 +90,7 @@
           <!-- Navigation End -->
 
           <!-- Content Beg -->
-          <section class="md:container md:mx-auto content">
+          <section class="md:container md:mx-auto content flex-1">
           {% block content %}
           {% endblock %}
           </section>
