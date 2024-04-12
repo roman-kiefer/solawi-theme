@@ -1,3 +1,24 @@
-.myClass {
-  color: red;
+@font-face {
+  font-family: Roboto;
+  src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Whisper;
+  src: url('../fonts/Whisper/Whisper-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Caveat;
+  src: url('../fonts/Caveat/static/Caveat-Regular.ttf') format('truetype');
+}
+
+html {
+  font-family: Lato, sans-serif;
+}
+
+.whisper {
+  font-family: Whisper, sans-serif;
+}
+
+.caveat {
+  font-family: Caveat, sans-serif;
 }

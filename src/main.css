@@ -37,6 +37,9 @@
     @apply bg-opacity-60;
     @apply border-white;
   }
+  .solawi-hero-content {
+    @apply text-3xl;
+  }
 
   .content ul {
     @apply list-disc;
