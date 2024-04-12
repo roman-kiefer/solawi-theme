@@ -133,4 +133,8 @@
     {% block bottom %} {{ assets.js('bottom')|raw }} {% endblock %}
 </body>
 
+{% block javascript_end %}
+	{% do assets.addJs('theme://js/slide.js', 50) %}
+{% endblock %}
+
 </html>

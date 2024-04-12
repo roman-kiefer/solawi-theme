@@ -1,24 +1,30 @@
-<div class="modular-row callout {{ page.header.body_classes|e }}">
-{% block hero %}
-    <!--div class="hero min-h-52" style="background-imagee: url('./images/tomaten.jpg')"-->
-    <!--div class="hero min-h-52" style="background-image: url('{{ url('theme://images/tomaten.jpg')|e }}')"-->
-    {% set image = page.media.images|first %}
-    {% if image %}
-    <div class="hero min-h-52" style="background-image: url('{{ page.route }}/{{ image.filename }}')">
-    {% endif %}
+<!-- card_hero.html.twig -->
 
-    <div class="hero-overlay bg-opacity-60"></div>
-        <div class="text-center hero-content text-neutral-content">
-            <div class="max-w-md">
-                <h1 class="mb-5 text-5xl font-bold">
-                {{ page.title|e }}
-                </h1>
-                <p class="mb-5">
-                {{ content|raw }}
-                </p>
-                <!--button class="btn btn-primary">Get Started</button-->
-            </div>
-        </div>
-    </div>
+<div class="modular-row callout relative {{ page.header.body_classes|e }}">
+{% block hero %}
+
+  {% for image in page.media.images %}
+  <div 
+  class="mySlides fade h-52" 
+  {% if loop.first %}style="display:block;"{% else %}style="display:none;"{% endif %}
+  >
+    <img src="{{ page.route }}/{{ image.filename }}" class="w-full h-52">
+  </div>
+  {% endfor %}
+
+
+  <div class="solawi-hero text-center absolute top-0 ml-10 text-stroke">
+      <div class="max-w-md">
+          <h1 class="mb-5 text-5xl font-bold">
+          {{ page.title|e }}
+          </h1>
+          <p class="mb-5">
+          {{ content|raw }}
+          </p>
+      </div>
+  </div>
+
+
 {% endblock %}
 </div>
+
