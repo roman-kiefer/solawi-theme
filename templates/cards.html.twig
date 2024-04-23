@@ -1,7 +1,7 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-<section class="flex flex-row flex-wrap gap-4 mx-4">
+<section class="flex flex-row flex-wrap gap-4">
 {% for module in page.collection() %}
     {{ module.content|raw }}
 {% endfor %}

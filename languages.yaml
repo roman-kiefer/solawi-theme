@@ -1,0 +1,24 @@
+de:
+  FOOTER_TEXT:
+  CATEGORIES: Kategorien
+  POPULAR_ARTICLES: Beliebte Rezepte
+  LATEST_ARTICLES: Neueste Rezepte
+  AUTHOR: 'Author:'
+  ALL_AUTHOR_POSTS: All posts by this author
+  ERROR: Fehler!
+  ARTICLE_CATEGORIES: Rezept Kategorien
+  RELATED_ARTICLES: Ähnliche Rezepte
+  COMMENTS: Kommentare
+  CATEGORY: 'Kategorie:'
+en:
+  FOOTER_TEXT:
+  CATEGORIES: Categories
+  POPULAR_ARTICLES: Popular Receipes
+  LATEST_ARTICLES: Latest Receipes
+  AUTHOR: 'Author:'
+  ALL_AUTHOR_POSTS: All posts by this author
+  ERROR: Error!
+  ARTICLE_CATEGORIES: Receipes Categories
+  RELATED_ARTICLES: Related Receipes
+  COMMENTS: Comments
+  CATEGORY: 'Category:'

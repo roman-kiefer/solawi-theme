@@ -1,0 +1,17 @@
+<ul class="related-pages">
+    {% for related_path, score in related_pages %}
+        {% set related = grav['pages'].get(related_path) %}
+        {% if related %}
+            {% if related.header.media == 'video' %}
+            <li class="video">
+            {% else %}
+            <li class="text">
+            {% endif %}
+                <a href="{{ related.url }}" title="{{ related.title }}">{{ related.title }}</a>
+                {% if config.plugins.relatedpages.show_score %}
+                    <progress class="progress progress-primary w-10" value="{{ score }}" max="100"></progress>
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

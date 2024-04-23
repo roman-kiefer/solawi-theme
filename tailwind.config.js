@@ -36,10 +36,10 @@ module.exports = {
       },
       {
         solawiDark: {
-          primary: '#82B440',
+          primary: '#338F55',
           'primary-focus': '#659724',
           'primary-content': '#ffffff',
-          secondary: '#338F55',
+          secondary: '#82B440',
           'secondary-focus': '#1C783E',
           'secondary-content': '#ffffff',
           accent: '#DAAE08',
