@@ -22,6 +22,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
           server: web2.greensta.de
-          username: ${{ FTP_USER }}
-          password: ${{ FTP_PASSWORD }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
