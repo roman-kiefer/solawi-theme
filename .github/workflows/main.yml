@@ -21,7 +21,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
-          server: ftp.wahlbacherhof.org
-          username: ${{ SECRETS.FTP_USER }}
-          password: ${{ SECRETS.FTP_PASSWORD }}
+          server: web2.greensta.de
+          username: ${{ FTP_USER }}
+          password: ${{ FTP_PASSWORD }}
           local-dir: ./
