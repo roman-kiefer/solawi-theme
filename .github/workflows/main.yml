@@ -8,10 +8,10 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 16
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: 🔨 Build Project
         run: |
@@ -22,6 +22,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
           server: ftp.wahlbacherhof.org
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
+          username: ${{ SECRETS.FTP_USER }}
+          password: ${{ SECRETS.FTP_PASSWORD }}
           local-dir: ./
