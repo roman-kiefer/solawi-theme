@@ -8,7 +8,7 @@
   class="mySlides fade h-52" 
   {% if loop.first %}style="display:block;"{% else %}style="display:none;"{% endif %}
   >
-    <img src="{{ page.route }}/{{ image.filename }}" class="w-full h-52">
+    <img src="{{ page.route }}/{{ image.filename }}" class="w-full h-52 img-fit">
   </div>
   {% endfor %}
 
