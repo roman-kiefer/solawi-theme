@@ -1,11 +1,13 @@
 let slideIndex = 0;
 
+const seconds = 5;
+
 function showSlides() {
   let i;
   let slides = document.getElementsByClassName('mySlides');
 
   if (slides.length < 1) {
-    setTimeout(showSlides, 5000); // Change image every 2 seconds
+    setTimeout(showSlides, seconds * 1000);
     return;
   }
 
@@ -18,6 +20,6 @@ function showSlides() {
   }
 
   slides[slideIndex - 1].style.display = 'block';
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
+  setTimeout(showSlides, seconds * 1000);
 }
 showSlides();
