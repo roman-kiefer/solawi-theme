@@ -21,6 +21,11 @@
     @apply my-2;
   }
 
+  .content a {
+    @apply text-primary;
+    @apply hover:text-secondary;
+  }
+
   .solawi-hero {
     @apply p-4;
     @apply text-center;
