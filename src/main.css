@@ -26,6 +26,10 @@
     @apply hover:text-secondary;
   }
 
+  .content .badge a {
+    @apply text-white;
+  }
+
   .solawi-hero {
     @apply p-4;
     @apply text-center;
