@@ -44,3 +44,7 @@ html {
   );
   height: 0.4rem;
 }
+
+.content img {
+  margin: 0.5em 1em;
+}
