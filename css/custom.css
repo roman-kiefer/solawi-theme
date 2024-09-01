@@ -48,3 +48,8 @@ html {
 .content img {
   margin: 0.5em 1em;
 }
+
+.content .card img,
+.content .mySlides img {
+  margin: unset;
+}
