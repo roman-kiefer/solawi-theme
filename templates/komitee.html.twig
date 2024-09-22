@@ -1,0 +1,16 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+	<article>
+		<section class="content">
+			{{ page.content|raw }}
+		</section>
+		<section class="flex flex-row flex-wrap gap-4">
+			{% for module in page.collection() %}
+
+				{{ module.content|raw }}
+
+			{% endfor %}
+		</section>
+	</article>
+{% endblock %}

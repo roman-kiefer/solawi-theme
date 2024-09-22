@@ -1,0 +1,14 @@
+<div class="card card-side bg-base-100 shadow-xl">
+	<figure>
+		{% set image = page.media.images|first %}
+		{% if image %}
+			{{ image.cropResize(200,200).html('',page.header.title,'h-full')|raw }}
+		{% endif %}
+	</figure>
+	<div class="card-body p-0">
+		<div class="p-4">
+			<h2 class="card-title">{{ page.header.title|raw }}</h2>
+			<p>{{ content|raw }}</p>
+		</div>
+	</div>
+</div>
