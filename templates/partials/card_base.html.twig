@@ -1,13 +1,13 @@
-  <figure>
-    {% set image = page.media.images|first %}
-    {% if image %}
-        {{ image.cropZoom(1024, 300).html('','','w-auto')|raw }}
-    {% endif %}
-  </figure>
-  <div class="card-body">
-    <h2>{{ page.header.title|raw }}</h2>
-    {{ content|raw }}
-    <div class="card-actions justify-end">
-      <button  onclick="window.location.href='{{ page.header.btn_link|raw }}';" class="btn btn-primary">weiter</button>
-    </div>
-  </div>
+<figure>
+	{% set image = page.media.images|first %}
+	{% if image %}
+		{{ image.cropZoom(1024, 300).html('','','w-auto')|raw }}
+	{% endif %}
+</figure>
+<div class="card-body">
+	<h2>{{ page.header.title|raw }}</h2>
+	{{ content|raw }}
+	<div class="card-actions justify-end">
+		<button onclick="window.location.href='{{ page.header.btn_link|raw }}';" class="btn btn-primary">weiter</button>
+	</div>
+</div>
