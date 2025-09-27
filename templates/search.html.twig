@@ -5,7 +5,7 @@
 <section class="recipe-search-page">
     <div class="search-header">
         <h1 class="text-3xl font-bold text-primary mb-4">Rezepte Suche</h1>
-        <p class="text-lg text-gray-600 mb-6">Durchsuche unsere Sammlung saisonaler Rezepte mit frischen Zutaten aus der Solidarischen Landwirtschaft.</p>
+        <p class="text-lg mb-6">Durchsuche unsere Sammlung saisonaler Rezepte mit frischen Zutaten aus der Solidarischen Landwirtschaft.</p>
         
         {# Search form #}
         <div class="search-form p-6 rounded-lg">
@@ -15,7 +15,7 @@
                            name="query" 
                            value="{{ uri.query('query')|e }}" 
                            placeholder="Rezepte durchsuchen..." 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                           class="input input-bordered w-full">
                 </div>
                 <button type="submit" 
                         class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-focus transition-colors duration-200">
