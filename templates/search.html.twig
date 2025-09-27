@@ -1,0 +1,229 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+<section class="recipe-search-page">
+    <div class="search-header">
+        <h1 class="text-3xl font-bold text-primary mb-4">Rezepte Suche</h1>
+        <p class="text-lg text-gray-600 mb-6">Durchsuche unsere Sammlung saisonaler Rezepte mit frischen Zutaten aus der Solidarischen Landwirtschaft.</p>
+        
+        {# Search form #}
+        <div class="search-form bg-white p-6 rounded-lg shadow-md">
+            <form action="{{ page.url }}" method="get" class="flex flex-col md:flex-row gap-4">
+                <div class="flex-grow">
+                    <input type="text" 
+                           name="query" 
+                           value="{{ uri.query('query')|e }}" 
+                           placeholder="Rezepte durchsuchen..." 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <button type="submit" 
+                        class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-focus transition-colors duration-200">
+                    <i class="fa fa-search mr-2"></i>Suchen
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {# Search results #}
+    {% set search_query = uri.query('query') %}
+    
+    {% if search_query %}
+        <div class="search-results">
+            <h2 class="text-2xl font-semibold mb-6">
+                Rezept-Suchergebnisse für "{{ search_query|e }}"
+            </h2>
+            
+            {# Search in recipes only #}
+            {% set search_results = [] %}
+            {% set recipe_page = page.find('/rezepte/uebersicht') %}
+            {% if recipe_page %}
+                {% for recipe in recipe_page.children %}
+                    {% set title_match = search_query|lower in recipe.title|lower %}
+                    {% set content_match = search_query|lower in recipe.content|lower %}
+                    {% set category_match = false %}
+                    {% if recipe.taxonomy.category %}
+                        {% set category_string = recipe.taxonomy.category|join(' ')|lower %}
+                        {% set category_match = search_query|lower in category_string %}
+                    {% endif %}
+                    {% if title_match or content_match or category_match %}
+                        {% set search_results = search_results|merge([{'type': 'recipe', 'page': recipe}]) %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if search_results|length > 0 %}
+                <div class="results-count mb-6">
+                    <p class="text-gray-600">
+                        {{ search_results|length }} 
+                        {% if search_results|length == 1 %}
+                            Rezept gefunden
+                        {% else %}
+                            Rezepte gefunden
+                        {% endif %}
+                    </p>
+                </div>
+                
+                <div class="recipe-results">
+                    {% for result in search_results %}
+                        {% set recipe = result.page %}
+                        <div class="recipe-item bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 mb-6">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-3">
+                                    <a href="{{ recipe.url }}" class="text-primary hover:text-secondary transition-colors duration-200">
+                                        {{ recipe.title|e }}
+                                    </a>
+                                </h3>
+                                
+                                {% if recipe.taxonomy.category %}
+                                    <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
+                                        {% for category in recipe.taxonomy.category %}
+                                            {% if category == 'Frühling' %}
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    🌱 {{ category }}
+                                                </span>
+                                            {% elseif category == 'Sommer' %}
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                    ☀️ {{ category }}
+                                                </span>
+                                            {% elseif category == 'Herbst' %}
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                                    🍂 {{ category }}
+                                                </span>
+                                            {% elseif category == 'Winter' %}
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    ❄️ {{ category }}
+                                                </span>
+                                            {% else %}
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                    {{ category }}
+                                                </span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                
+                                {% if recipe.summary %}
+                                    <p class="text-gray-600 text-sm line-clamp-3 mb-1">{{ recipe.summary|striptags|e }}</p>
+                                {% else %}
+                                    {% set content_excerpt = recipe.content|striptags|slice(0, 120) %}
+                                    <p class="text-gray-600 text-sm line-clamp-3 mb-1">{{ content_excerpt|e }}...</p>
+                                {% endif %}
+                                
+                                <div class="mt-1 flex justify-end">
+                                    <a href="{{ recipe.url }}" class="inline-flex items-center text-primary hover:text-secondary font-medium transition-colors duration-200 text-sm">
+                                        Rezept ansehen
+                                        <span class="ml-1 text-xs">→</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% if not loop.last %}
+                            <hr class="my-8 border-gray-300">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-results text-center py-12">
+                    <div class="mb-4">
+                        <svg class="w-16 h-16 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Keine Rezepte gefunden</h3>
+                    <p class="text-gray-500">Versuche es mit anderen Suchbegriffen oder durchstöbere unsere <a href="/rezepte/uebersicht" class="text-primary hover:text-secondary">Rezepte-Kategorien</a>.</p>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="search-suggestions">
+            <h2 class="text-2xl font-semibold mb-6">Beliebte Suchbegriffe</h2>
+            
+            <div class="suggestion-tags flex flex-wrap gap-3 mb-8">
+                <a href="?query=Kürbis" class="px-4 py-2 bg-orange-100 text-orange-800 rounded-full hover:bg-orange-200 transition-colors duration-200">
+                    🎃 Kürbis
+                </a>
+                <a href="?query=Suppe" class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors duration-200">
+                    🍲 Suppe
+                </a>
+                <a href="?query=Salat" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors duration-200">
+                    🥗 Salat
+                </a>
+                <a href="?query=Kartoffel" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full hover:bg-yellow-200 transition-colors duration-200">
+                    🥔 Kartoffel
+                </a>
+                <a href="?query=Gemüse" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors duration-200">
+                    🌶️ Gemüse
+                </a>
+                <a href="?query=Risotto" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full hover:bg-yellow-200 transition-colors duration-200">
+                    🍚 Risotto
+                </a>
+            </div>
+            
+            <div class="browse-categories">
+                <h3 class="text-xl font-semibold mb-4">Nach Saison durchsuchen</h3>
+                <div class="suggestion-tags flex flex-wrap gap-3 mb-8">
+                    <a href="?query=Frühling" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors duration-200">
+                        🌱 Frühling
+                    </a>
+                    <a href="?query=Sommer" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full hover:bg-yellow-200 transition-colors duration-200">
+                        ☀️ Sommer
+                    </a>
+                    <a href="?query=Herbst" class="px-4 py-2 bg-orange-100 text-orange-800 rounded-full hover:bg-orange-200 transition-colors duration-200">
+                        🍂 Herbst
+                    </a>
+                    <a href="?query=Winter" class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors duration-200">
+                        ❄️ Winter
+                    </a>
+                </div>
+            </div>
+            
+            {% set recipe_page = page.find('/rezepte/uebersicht') %}
+            {% if recipe_page %}
+                {% set all_categories = [] %}
+                {% for recipe in recipe_page.children %}
+                    {% if recipe.taxonomy.category %}
+                        {% for category in recipe.taxonomy.category %}
+                            {% if category not in all_categories %}
+                                {% set all_categories = all_categories|merge([category]) %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                
+                <div class="all-categories">
+                    <h3 class="text-xl font-semibold mb-4">Alle Kategorien</h3>
+                    <div class="flex flex-wrap gap-3">
+                        {% for category in all_categories|sort %}
+                            {% if category == 'Frühling' %}
+                                <a href="?query={{ category|url_encode }}" class="px-4 py-2 bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors duration-200">
+                                    🌱 {{ category }}
+                                </a>
+                            {% elseif category == 'Sommer' %}
+                                <a href="?query={{ category|url_encode }}" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full hover:bg-yellow-200 transition-colors duration-200">
+                                    ☀️ {{ category }}
+                                </a>
+                            {% elseif category == 'Herbst' %}
+                                <a href="?query={{ category|url_encode }}" class="px-4 py-2 bg-orange-100 text-orange-800 rounded-full hover:bg-orange-200 transition-colors duration-200">
+                                    🍂 {{ category }}
+                                </a>
+                            {% elseif category == 'Winter' %}
+                                <a href="?query={{ category|url_encode }}" class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors duration-200">
+                                    ❄️ {{ category }}
+                                </a>
+                            {% else %}
+                                <a href="?query={{ category|url_encode }}" class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full hover:bg-gray-200 transition-colors duration-200">
+                                    {{ category }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

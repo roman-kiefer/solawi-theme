@@ -53,3 +53,67 @@ html {
 .content .mySlides img {
   margin: unset;
 }
+
+/* Search Page Styling */
+.recipe-search {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.search-form input[type='text'] {
+  transition: all 0.3s ease;
+}
+
+.search-form input[type='text']:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.recipe-grid {
+  gap: 1.5rem;
+}
+
+.recipe-card {
+  transition: all 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+}
+
+.suggestion-tags a {
+  transition: all 0.3s ease;
+}
+
+.suggestion-tags a:hover {
+  transform: translateY(-2px);
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Universal Search Styling */
+.universal-search {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.result-card {
+  transition: all 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+}

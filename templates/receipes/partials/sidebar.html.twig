@@ -53,37 +53,7 @@
 	{% set maxcount = grav.theme.config.params.sidebar.maxentries %}
 {% endif %}
 
-{% if grav.theme.config.params.sidebar.show.popular %}
-	<div class="topiclist">
-		{% set counts = viewcounts|sort|reverse %}
-		{% set popular = [] %}
-		{% for route,views in counts %}
-			{% if route starts with homeroute %}
-				{% set thispage = page.find(route) %}
-				{% if thispage is not null %}
-					{% set popular = popular|merge([thispage]) %}
-				{% endif %}
-			{% endif %}
-		{% endfor %}
-		{% set tmplst = [] %}
-		{% for page in popular %}
-			{% set blisted = false %}
-			{% for bcat in blist %}
-				{% if bcat in page.taxonomy["category"] %}
-					{% set blisted = true %}
-				{% endif %}
-			{% endfor %}
-			{% if not blisted %}
-				{% set tmplst = tmplst|merge([page]) %}
-			{% endif %}
-		{% endfor %}
-		{% set popular = tmplst %}
-		<h1>
-			<span>{{ 'POPULAR_ARTICLES'|t }}</span>
-		</h1>
-		{% include 'receipes/partials/topiclist.html.twig' with {'articles': popular, 'maxcount': maxcount} %}
-	</div>
-{% endif %}
+{# Beliebte Rezepte Sektion entfernt #}
 
 {% if grav.theme.config.params.sidebar.show.latest %}
 	<div class="topiclist">
