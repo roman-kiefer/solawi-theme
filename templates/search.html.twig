@@ -67,7 +67,7 @@
                 <div class="recipe-results">
                     {% for result in search_results %}
                         {% set recipe = result.page %}
-                        <div class="recipe-item bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 mb-6">
+                        <div class="recipe-item rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6 mb-6">
                             <div>
                                 <h3 class="text-xl font-semibold mb-3">
                                     <a href="{{ recipe.url }}" class="text-primary hover:text-secondary transition-colors duration-200">
