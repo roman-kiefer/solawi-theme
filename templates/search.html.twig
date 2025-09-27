@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<<<<<<< HEAD
 <section class="recipe-search-page">
     <div class="search-header">
         <h1 class="text-3xl font-bold text-primary mb-4">Rezepte Suche</h1>
@@ -22,6 +23,29 @@
                     <i class="fa fa-search mr-2"></i>Suchen
                 </button>
             </form>
+=======
+<div class="recipe-search-page">
+    <div class="search-header mb-8">
+        <h1 class="text-4xl font-bold mb-4">Rezepte Suche</h1>
+        <p class="text-xl mb-6">Durchsuche unsere Sammlung saisonaler Rezepte mit frischen Zutaten aus der Solidarischen Landwirtschaft.</p>
+        
+        {# Search form #}
+        <div class="card bg-base-100 shadow-xl mb-8">
+            <div class="card-body">
+                <form action="{{ page.url }}" method="get" class="flex flex-col md:flex-row gap-4">
+                    <div class="form-control flex-grow">
+                        <input type="text" 
+                               name="query" 
+                               value="{{ uri.query('query')|e }}" 
+                               placeholder="Rezepte durchsuchen..." 
+                               class="input input-bordered w-full">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Suchen
+                    </button>
+                </form>
+            </div>
+>>>>>>> development
         </div>
     </div>
 
@@ -53,13 +77,20 @@
             {% endif %}
 
             {% if search_results|length > 0 %}
+<<<<<<< HEAD
                 <div class="results-count mb-6">
                     <p class="text-gray-600">
                         {{ search_results|length }} 
+=======
+                <div class="alert alert-info mb-6">
+                    <div>
+                        <span>{{ search_results|length }} 
+>>>>>>> development
                         {% if search_results|length == 1 %}
                             Rezept gefunden
                         {% else %}
                             Rezepte gefunden
+<<<<<<< HEAD
                         {% endif %}
                     </p>
                 </div>
@@ -71,11 +102,25 @@
                             <div>
                                 <h3 class="text-xl font-semibold mb-3">
                                     <a href="{{ recipe.url }}" class="text-primary hover:text-secondary transition-colors duration-200">
+=======
+                        {% endif %}</span>
+                    </div>
+                </div>
+                
+                <div class="recipe-results space-y-6">
+                    {% for result in search_results %}
+                        {% set recipe = result.page %}
+                        <div class="card bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <h3 class="card-title text-2xl">
+                                    <a href="{{ recipe.url }}" class="link link-primary">
+>>>>>>> development
                                         {{ recipe.title|e }}
                                     </a>
                                 </h3>
                                 
                                 {% if recipe.taxonomy.category %}
+<<<<<<< HEAD
                                     <div class="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
                                         {% for category in recipe.taxonomy.category %}
                                             {% if category == 'Frühling' %}
@@ -98,12 +143,27 @@
                                                 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                                                     {{ category }}
                                                 </span>
+=======
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        {% for category in recipe.taxonomy.category %}
+                                            {% if category == 'Frühling' %}
+                                                <div class="badge badge-success">🌱 {{ category }}</div>
+                                            {% elseif category == 'Sommer' %}
+                                                <div class="badge badge-warning">☀️ {{ category }}</div>
+                                            {% elseif category == 'Herbst' %}
+                                                <div class="badge badge-accent">🍂 {{ category }}</div>
+                                            {% elseif category == 'Winter' %}
+                                                <div class="badge badge-info">❄️ {{ category }}</div>
+                                            {% else %}
+                                                <div class="badge badge-neutral">{{ category }}</div>
+>>>>>>> development
                                             {% endif %}
                                         {% endfor %}
                                     </div>
                                 {% endif %}
                                 
                                 {% if recipe.summary %}
+<<<<<<< HEAD
                                     <p class="text-gray-600 text-sm line-clamp-3 mb-1">{{ recipe.summary|striptags|e }}</p>
                                 {% else %}
                                     {% set content_excerpt = recipe.content|striptags|slice(0, 120) %}
@@ -114,10 +174,22 @@
                                     <a href="{{ recipe.url }}" class="inline-flex items-center text-primary hover:text-secondary font-medium transition-colors duration-200 text-sm">
                                         Rezept ansehen
                                         <span class="ml-1 text-xs">→</span>
+=======
+                                    <p class="text-base-content/70">{{ recipe.summary|striptags|e }}</p>
+                                {% else %}
+                                    {% set content_excerpt = recipe.content|striptags|slice(0, 120) %}
+                                    <p class="text-base-content/70">{{ content_excerpt|e }}...</p>
+                                {% endif %}
+                                
+                                <div class="card-actions justify-end">
+                                    <a href="{{ recipe.url }}" class="btn btn-primary">
+                                        Rezept ansehen
+>>>>>>> development
                                     </a>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         
                         {% if not loop.last %}
                             <hr class="my-8 border-gray-300">
@@ -133,11 +205,22 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-600 mb-2">Keine Rezepte gefunden</h3>
                     <p class="text-gray-500">Versuche es mit anderen Suchbegriffen oder durchstöbere unsere <a href="/rezepte/uebersicht" class="text-primary hover:text-secondary">Rezepte-Kategorien</a>.</p>
+=======
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-warning">
+                    <div>
+                        <h3 class="font-bold">Keine Rezepte gefunden</h3>
+                        <div class="text-xs">Versuche es mit anderen Suchbegriffen oder durchstöbere unsere <a href="/rezepte/uebersicht" class="link link-primary">Rezepte-Kategorien</a>.</div>
+                    </div>
+>>>>>>> development
                 </div>
             {% endif %}
         </div>
     {% else %}
         <div class="search-suggestions">
+<<<<<<< HEAD
             <h2 class="text-2xl font-semibold mb-6">Beliebte Suchbegriffe</h2>
             
             <div class="suggestion-tags flex flex-wrap gap-3 mb-8">
@@ -176,6 +259,26 @@
                     <a href="?query=Winter" class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors duration-200">
                         ❄️ Winter
                     </a>
+=======
+            <h2 class="text-3xl font-semibold mb-6">Beliebte Suchbegriffe</h2>
+            
+            <div class="flex flex-wrap gap-3 mb-8">
+                <a href="?query=Kürbis" class="btn btn-outline btn-warning">🎃 Kürbis</a>
+                <a href="?query=Suppe" class="btn btn-outline btn-info">🍲 Suppe</a>
+                <a href="?query=Salat" class="btn btn-outline btn-success">🥗 Salat</a>
+                <a href="?query=Kartoffel" class="btn btn-outline btn-warning">🥔 Kartoffel</a>
+                <a href="?query=Gemüse" class="btn btn-outline btn-success">🌶️ Gemüse</a>
+                <a href="?query=Risotto" class="btn btn-outline btn-accent">🍚 Risotto</a>
+            </div>
+            
+            <div class="browse-categories mb-8">
+                <h3 class="text-2xl font-semibold mb-4">Nach Saison durchsuchen</h3>
+                <div class="flex flex-wrap gap-3">
+                    <a href="?query=Frühling" class="btn btn-success">🌱 Frühling</a>
+                    <a href="?query=Sommer" class="btn btn-warning">☀️ Sommer</a>
+                    <a href="?query=Herbst" class="btn btn-accent">🍂 Herbst</a>
+                    <a href="?query=Winter" class="btn btn-info">❄️ Winter</a>
+>>>>>>> development
                 </div>
             </div>
             
@@ -193,6 +296,7 @@
                 {% endfor %}
                 
                 <div class="all-categories">
+<<<<<<< HEAD
                     <h3 class="text-xl font-semibold mb-4">Alle Kategorien</h3>
                     <div class="flex flex-wrap gap-3">
                         {% for category in all_categories|sort %}
@@ -216,6 +320,21 @@
                                 <a href="?query={{ category|url_encode }}" class="px-4 py-2 bg-gray-100 text-gray-800 rounded-full hover:bg-gray-200 transition-colors duration-200">
                                     {{ category }}
                                 </a>
+=======
+                    <h3 class="text-2xl font-semibold mb-4">Alle Kategorien</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for category in all_categories|sort %}
+                            {% if category == 'Frühling' %}
+                                <a href="?query={{ category|url_encode }}" class="btn btn-sm btn-success">🌱 {{ category }}</a>
+                            {% elseif category == 'Sommer' %}
+                                <a href="?query={{ category|url_encode }}" class="btn btn-sm btn-warning">☀️ {{ category }}</a>
+                            {% elseif category == 'Herbst' %}
+                                <a href="?query={{ category|url_encode }}" class="btn btn-sm btn-accent">🍂 {{ category }}</a>
+                            {% elseif category == 'Winter' %}
+                                <a href="?query={{ category|url_encode }}" class="btn btn-sm btn-info">❄️ {{ category }}</a>
+                            {% else %}
+                                <a href="?query={{ category|url_encode }}" class="btn btn-sm btn-neutral">{{ category }}</a>
+>>>>>>> development
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -224,6 +343,10 @@
         </div>
     {% endif %}
 
+<<<<<<< HEAD
 </section>
+=======
+</div>
+>>>>>>> development
 
 {% endblock %}
