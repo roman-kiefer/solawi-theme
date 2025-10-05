@@ -1,0 +1,27 @@
+<div class="card bg-base-100 shadow-xl md:basis-1/2 eu-foerderung-card">
+	<div class="p-4 eu-funding-layout flex flex-row gap-6 items-start">
+		<figure class="eu-flag-wrapper shrink-0 w-40" aria-label="Flagge der Europäischen Union">
+			<img src="{{ url('theme://images/eu-flag.png') }}" alt="Flagge der Europäischen Union" class="eu-flag"/>
+		</figure>
+		<div class="eu-text flex-1 text-sm leading-snug">
+			{% if content %}
+				<div class="eu-description">{{ content|raw }}</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="px-4 pb-4 eu-funding-layout flex flex-row gap-6 items-start w-full">
+		<div class="w-40 flex-none">
+			<p>EUROPÄISCHE UNION</p>
+			<p>Europäischer Landwirtschaftsfonds für die Entwicklung des ländlichen Raums: Hier investiert Europa in die ländlichen Gebiete</p>
+		</div>
+		<div class="grow"></div>
+		<div class="flex-none">
+			<img src="{{ url('theme://images/rlp.png') }}" class="foerderung-img p-4"/>
+		</div>
+		{% if page.header.use_bmel %}
+			<div class="flex-none">
+				<img src="{{ url('theme://images/BMEL.png') }}" alt="Bundesministerium für Ernährung und Landwirtschaft" class="foerderung-img p-4"/>
+			</div>
+		{% endif %}
+	</div>
+</div>

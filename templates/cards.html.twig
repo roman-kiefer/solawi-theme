@@ -1,9 +1,33 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-	<section class="flex flex-row flex-wrap gap-4">
-		{% for module in page.collection() %}
+	{% set funding_modules = [] %}
+	{% set normal_modules = [] %}
+	{% for module in page.collection() %}
+		{% set is_funding = (module.template == 'card_eu_foerderung') or ('eu-foerderung' in module.slug) or ('foerderung' in module.slug) %}
+		{% if is_funding %}
+			{% set funding_modules = funding_modules|merge([module]) %}
+		{% else %}
+			{% set normal_modules = normal_modules|merge([module]) %}
+		{% endif %}
+	{% endfor %}
+
+	<section class="flex flex-row flex-wrap gap-4 modular-cards">
+		{% for module in normal_modules %}
 			{{ module.content|raw }}
 		{% endfor %}
 	</section>
+
+	{% if funding_modules %}
+		<section class="funding-cards mt-12 w-full lg:w-1/2 mx-auto">
+			<h2 class="text-xl font-bold mb-6">Gefördert durch</h2>
+			<div class="funding-flex flex flex-row flex-wrap gap-4">
+				{% for module in funding_modules %}
+					<div class="funding-item">
+						{{ module.content|raw }}
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	{% endif %}
 {% endblock %}

@@ -117,3 +117,67 @@ html {
 .result-card:hover {
   transform: translateY(-2px);
 }
+
+/* EU Förderung Card */
+.eu-foerderung-card {
+  font-size: 0.85rem;
+}
+.eu-foerderung-card .eu-logos img {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 4px;
+}
+.eu-foerderung-card .eu-text p {
+  margin: 0;
+}
+
+/* Ensure EU flag doesn't stretch too large inside card */
+.eu-foerderung-card .eu-flag {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2; /* 3:2 Verhältnis für EU-Flaggen-Grafiken */
+  max-width: 170px; /* gemäß Mindestabstand + proportionale Maximalbreite im Card-Kontext */
+  margin: 0; /* links oben ausrichten */
+}
+
+/* New funding layout & clear space */
+.eu-funding-layout {
+  align-items: flex-start;
+}
+.eu-flag-wrapper {
+  /* Clear Space: ca. 1/6 der Höhe ~18px, leicht reduziert für kompaktes Card Layout */
+  padding: 0 0.9rem 0 0;
+}
+.eu-flag-wrapper .eu-flag {
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.eu-description p + p {
+  margin-top: 0.6rem;
+}
+
+/* Layout Tweaks for the horizontal variant */
+.eu-foerderung-card .eu-logos {
+  padding-top: 0.25rem;
+}
+
+.eu-foerderung-card .eu-description p + p {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .eu-foerderung-card .eu-logos {
+    justify-content: flex-start;
+  }
+  .eu-foerderung-card .eu-flag {
+    max-width: 140px;
+  }
+}
+
+.foerderung-img {
+  height: 120px;
+  max-width: unset;
+}
